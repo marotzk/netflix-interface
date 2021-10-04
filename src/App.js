@@ -5,6 +5,7 @@ import { MovieRow } from "./components/MovieRow";
 import { FeatureMovie } from "./components/FeatureMovie";
 import { Header } from "./components/Header";
 import { GlobalStyle } from "./components/GlobalStyle";
+import { Loading } from "./components/Loading";
 
 export const App = () => {
 
@@ -31,7 +32,7 @@ export const App = () => {
 
   useEffect(() => {
     const scrollListener = () => {
-      if(window.scrollY > 10) {
+      if (window.scrollY > 10) {
         setBlackHeader(true);
       } else {
         setBlackHeader(false);
@@ -43,14 +44,12 @@ export const App = () => {
     }
   }, [])
 
-  if (!movieList) {
-    return <h1>Loading...</h1>
-  }
   return (
     <div className="App">
       <GlobalStyle />
+      {(!movieList || movieList.length <= 0) ? <Loading/> : 
       <Page>
-        <Header black={blackHeader}/>
+        <Header black={blackHeader} />
         {featureData &&
           <FeatureMovie item={featureData} />
         }
@@ -64,6 +63,7 @@ export const App = () => {
           Feito com <span role='img' aria-label='coração'>❤</span> por Willian M. Braga. | Direitos de imagem para Netflix  |  Dados pegos do site Themoviedb.org
         </Footer>
       </Page>
+      }
     </div>
   );
 }
