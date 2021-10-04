@@ -60,6 +60,9 @@ export const App = () => {
             <MovieRow key={key} title={movie.title} items={movie.items} />
           ))}
         </Lists>
+        <Footer>
+          Feito com <span role='img' aria-label='coração'>❤</span> por Willian M. Braga. | Direitos de imagem para Netflix  |  Dados pegos do site Themoviedb.org
+        </Footer>
       </Page>
     </div>
   );
@@ -70,4 +73,12 @@ const Page = styled.div`
 `
 const Lists = styled.section`
   margin-top: -150px;
+`
+
+const Footer = styled.footer`
+  text-align: center;
+  margin: 50px 0;
+  span {
+    color: red;
+  }
 `
