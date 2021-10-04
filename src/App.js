@@ -10,6 +10,7 @@ export const App = () => {
 
   const [movieList, setMovieList] = useState();
   const [featureData, setFeatureData] = useState(null);
+  const [blackHeader, setBlackHeader] = useState(false);
 
   useEffect(() => {
     // lista de filmes
@@ -26,6 +27,20 @@ export const App = () => {
     }
 
     loadAll();
+  }, []);
+
+  useEffect(() => {
+    const scrollListener = () => {
+      if(window.scrollY > 10) {
+        setBlackHeader(true);
+      } else {
+        setBlackHeader(false);
+      }
+    }
+    window.addEventListener('scroll', scrollListener);
+    return () => {
+      window.removeEventListener('scroll', scrollListener);
+    }
   }, [])
 
   if (!movieList) {
@@ -35,6 +50,7 @@ export const App = () => {
     <div className="App">
       <GlobalStyle />
       <Page>
+        <Header black={blackHeader}/>
         {featureData &&
           <FeatureMovie item={featureData} />
         }
