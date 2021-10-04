@@ -4,7 +4,7 @@ import NavigateBeforeIcon from '@material-ui/icons/NavigateBefore';
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
 export const MovieRow = ({ title, items }) => {
-  const [scrollX, setScrollX] = useState(-400);
+  const [scrollX, setScrollX] = useState(0);
 
   const handleLeftArrow = () => {
     let x = scrollX + Math.round(window.innerWidth / 2);
@@ -72,6 +72,10 @@ const Movie = styled.div`
     cursor: pointer;
     opacity: 0;
     transition: all ease 0.5s;
+
+    @media (max-width: 760px) {
+      opacity: 1;
+    }
   }
   .icon-left:hover, 
   .icon-right:hover {

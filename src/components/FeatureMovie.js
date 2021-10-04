@@ -1,20 +1,25 @@
 import styled from "styled-components"
 
-export const FeatureMovie = ({item}) => {
+export const FeatureMovie = ({ item }) => {
   let firstDate = new Date(item.first_air_date);
   let genres = [];
-  for(let i in item.genres) {
+  for (let i in item.genres) {
     genres.push(item.genres[i].name);
   }
 
-  return(
+  let description = item.overview;
+  if(description.length > 100){
+    description = description.substring(0, 100) + ' ...';
+  }
+
+  return (
     <Featured style={{
       backgroundImage: `url(https://image.tmdb.org/t/p/original${item.backdrop_path})`
-      }}>
-      
+    }}>
+
       <FeaturedVertical>
         <FeaturedHorizontal>
-          <div className= 'name'>{item.original_name}</div>
+          <div className='name'>{item.original_name}</div>
           <FeaturedInfo>
             <div className='points'>{item.vote_average} pontos</div>
             <div className='year'>{firstDate.getFullYear()}</div>
@@ -22,7 +27,7 @@ export const FeatureMovie = ({item}) => {
               {item.number_of_seasons} temporada{item.number_of_seasons !== 1 ? 's' : ''}
             </div>
           </FeaturedInfo>
-          <div className='description'><p>{item.overview}</p></div>
+          <div className='description'>{description}</div>
           <FeaturedButtons>
             <a href='/' className='btn-watch'>▶ Assistir</a>
             <a href='/' className='btn-list'>+ Minha Lista</a>
@@ -30,7 +35,7 @@ export const FeatureMovie = ({item}) => {
           <div className='genres'><strong>Generos:</strong> {genres.join(', ')}</div>
         </FeaturedHorizontal>
       </FeaturedVertical>
-    </Featured>  
+    </Featured>
   )
 }
 
@@ -38,6 +43,10 @@ const Featured = styled.section`
   height: 100vh;
   background-size: cover;
   background-position: center;
+  
+  @media (max-width: 760px) {
+    height: 90vh;
+  }
 `
 const FeaturedVertical = styled.div`
   width: inherit;
@@ -55,24 +64,28 @@ const FeaturedHorizontal = styled(FeaturedVertical)`
   .name {
     font-size: 60px;
     font-weight: bold;
+    @media (max-width: 760px) {
+      font-size: 40px;
+    }
   }
   .description{
     margin-top: 15px;
     font-size: 20px;
     color: #999;
-    max-width: 40%;
-    ;
-  }
-  .description p {
-    max-width: ;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    max-width: 40%; 
+    @media (max-width: 760px) {
+      font-size: 14px;
+      max-width: 100%;
+      margin-right: 30px;
+    }
   }
   .genres{
     margin-top: 15px;
     font-size: 18px;
     color: #999;
+    @media (max-width: 760px) {
+      font-size: 14px;
+    }
   }
 `
 const FeaturedInfo = styled.div`
@@ -80,6 +93,10 @@ const FeaturedInfo = styled.div`
   font-weight: bold;
   margin-top: 15px;
   
+  @media (max-width: 760px) {
+    font-size: 16px;
+  }
+
   .points,
   .year,
   .seasons{
@@ -117,5 +134,9 @@ const FeaturedButtons = styled.div`
     background-color: #333;
     color: #fff;
   }
-
+  @media (max-width: 760px) {
+    .btn-watch, .btn-list{
+      font-size: 14px;
+    }
+  }
 `
