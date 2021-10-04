@@ -22,7 +22,7 @@ export const FeatureMovie = ({item}) => {
               {item.number_of_seasons} temporada{item.number_of_seasons !== 1 ? 's' : ''}
             </div>
           </FeaturedInfo>
-          <div className='description'>{item.overview}</div>
+          <div className='description'><p>{item.overview}</p></div>
           <FeaturedButtons>
             <a href='/' className='btn-watch'>▶ Assistir</a>
             <a href='/' className='btn-list'>+ Minha Lista</a>
@@ -61,6 +61,13 @@ const FeaturedHorizontal = styled(FeaturedVertical)`
     font-size: 20px;
     color: #999;
     max-width: 40%;
+    ;
+  }
+  .description p {
+    max-width: ;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .genres{
     margin-top: 15px;
