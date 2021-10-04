@@ -1,6 +1,8 @@
-# Getting Started with Create React App
+# Netflix Interface
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+![screenshot](screenshot.PNG?raw=true "screenshot")
 
 ## Available Scripts
 
