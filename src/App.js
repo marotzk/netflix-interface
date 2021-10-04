@@ -3,9 +3,10 @@ import { TMDB } from "./service/TDMD";
 import styled from "styled-components";
 import { MovieRow } from "./components/MovieRow";
 import { FeatureMovie } from "./components/FeatureMovie";
+import { Header } from "./components/Header";
 import { GlobalStyle } from "./components/GlobalStyle";
 
-const App = () => {
+export const App = () => {
 
   const [movieList, setMovieList] = useState();
   const [featureData, setFeatureData] = useState(null);
@@ -31,22 +32,22 @@ const App = () => {
     return <h1>Loading...</h1>
   }
   return (
-    <Page className="App">
+    <div className="App">
       <GlobalStyle />
-      {featureData &&
-        <FeatureMovie item={featureData} />
-      }
+      <Page>
+        {featureData &&
+          <FeatureMovie item={featureData} />
+        }
 
-      <Lists>
-        {movieList.map((movie, key) => (
-          <MovieRow key={key} title={movie.title} items={movie.items} />
-        ))}
-      </Lists>
-    </Page>
+        <Lists>
+          {movieList.map((movie, key) => (
+            <MovieRow key={key} title={movie.title} items={movie.items} />
+          ))}
+        </Lists>
+      </Page>
+    </div>
   );
 }
-
-export default App;
 
 const Page = styled.div`
   font-family: 'Roboto', sans-serif;
