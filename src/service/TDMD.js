@@ -1,4 +1,4 @@
-const API_KEY =  process.env.REACT_APP_API_KEY;
+const API_KEY = process.env.REACT_APP_API_KEY;
 const API_BASE = process.env.REACT_APP_API_BASE;
 
 const basicFecth = async (endpoint) => {
@@ -51,5 +51,23 @@ export const TMDB = {
         items: await basicFecth(`/discover/movie?with_genres=99&language=pt-BR&api_key=${API_KEY}`)
       },
     ]
+  },
+  getMovieInfo: async (movieId, type) => {
+    let info = {};
+
+    if (movieId) {
+      switch(type) {
+        case 'movie':
+          info = await basicFecth(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`);
+          break;
+        case 'tv':
+          info = await basicFecth(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`);
+          break;
+        default:
+          console.log('Erro no switch!');
+        break;
+      }
+    }
+    return info;
   }
 }
